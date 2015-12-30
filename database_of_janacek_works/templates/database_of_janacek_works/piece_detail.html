@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Piece detail</title>
+
+    <script src="{% static "database_of_janacek_works/js/detail.js" %}" type="text/javascript"></script>
+
+    <style> #table_style { float: right; } </style>
+
+</head>
+<body>
+
+<h1>{{ piece.cz_title }}</h1>
+
+
+<div class="ul_container">
+    <ul class="mainnav" id="nav">
+
+        <li><a href="javascript:void(0)"><h3>ALBUMS</h3></a>
+            <ul class="subnav" id="sub1">
+                {% if not piece.album_set.all %}
+                    <li>No albums</li>
+                {% else %}
+                    {% for album in piece.album_set.all %}
+                        <li class="album_id_{{ album.album_id }}" onclick="classFunction(this.className)"><a>{{ album.label_name }} {{ album.catalogue_number }}</a></li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </li>
+
+        <li><a href="javascript:void(0)"><h3>ARRANGEMENT</h3></a>
+            <ul class="subnav" id="sub1">
+                {% if not piece.arrangement_set.all %}
+                        <li>No arrangements</li>
+                {% else %}
+                    <p>suitable for</p>
+                    {% for arrangement in piece.arrangement_set.all %}
+                        <li>{{ arrangement.suitable_for }} {{ arrangement.arrangemet_for }}</li>
+                        <ul>
+                            <li>arrangemed by: <b>{{ arrangement.arrangemet_by }}</b></li>
+                            <li>perfomed by: <b>{{ arrangement.perfomr_by }}</b></li>
+                        </ul>
+                        <p></p>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </li>
+
+        <li><a href="javascript:void(0)"><h3>MOVEMENTS</h3></a>
+            <ul class="subnav" id="sub1">
+                {% if not piece.piecemovement_set.all %}
+                    <li>No movements</li>
+                {% else %}
+                    {% for movement in piece.piecemovement_set.all %}
+                        <li>{{ movement.movement_order }}. {{ movement.movement_title }}</li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

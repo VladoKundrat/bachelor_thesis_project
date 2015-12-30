@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>album detail</title>
+
+    <script src="{% static "database_of_janacek_works/js/detail.js" %}" type="text/javascript"></script>
+
+    <style> #table_style { float: right; } </style>
+
+</head>
+<body>
+
+<h1>{{ album.label_name }} - {{ album.catalogue_number }}</h1>
+
+
+<div class="ul_container">
+    <ul class="mainnav" id="nav" style="list-style:none;">
+
+        <li><a href="javascript:void(0)"><h3>PIECE</h3></a>
+            <ul class="subnav" id="sub1">
+                {% if not album.albumpiece_set.all %}
+                    <li>No tracks</li>
+                {% else %}
+                    {% for piece in album.albumpiece_set.all %}
+                        <li class="piece_id_{{ piece.piece_id }}" onclick="classFunction(this.className)"><a>{{ piece.piece }}</a></li>
+                        <p></p>
+                        <ul>
+                            <li>Year of recording: {{ piece.year_of_recording }}</li>
+                            <li>Track order: {{ piece.track_order }} </li>
+                            <li>Interpret: {{ piece.interpret.interpret_name }}</li>
+                        </ul>
+                        <p></p>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </li>
+
+        <li><a href="javascript:void(0)"><h3>COMPOSER</h3></a>
+            <ul class="subnav" id="sub1">
+                {% if not album.composer_set.all %}
+                    <li>No composers</li>
+                {% else %}
+                    {% for composer in album.composer_set.all %}
+                        <li>{{ composer.composer_name }}</li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
