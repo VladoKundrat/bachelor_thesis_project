@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+admin.site.site_header = 'Database of recordings of Janacek\'s works'
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'janacek/', include('database_of_janacek_works.urls'))

@@ -1,3 +1,4 @@
+//function initialize DataTables and formatted json into table
 
 $(document).ready(function() {
     var table = $('#piece').DataTable( {
@@ -133,7 +134,6 @@ $(document).ready(function() {
         "processing": true,
         "serverSide": true,
         "dataType": "json",
-        //"ajax": "{% url 'rest_album' %}",
         "ajax": "../rest/album",
         "pageLength": 15,
         "deferRender": true,
@@ -165,6 +165,8 @@ $(document).ready(function() {
     });
 });
 
+//swaps the currently displayed detail for the detail of the specific album/piece
+
 function classFunction(elm) {
         if (elm.indexOf("album") > -1){
             var n = elm.lastIndexOf('_');
@@ -186,6 +188,7 @@ function classFunction(elm) {
         })
     }
 
+//Display of the detail
 
 $(document).ready(function() {
     if(window.location.href.indexOf("piece") > -1){

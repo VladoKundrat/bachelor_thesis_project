@@ -1,3 +1,5 @@
+{#template generating content of piece detail#}
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -15,7 +17,6 @@
 <body>
 
 <h1>{{ piece.cz_title }}</h1>
-
 
 <div class="ul_container">
     <ul class="mainnav" id="nav">
@@ -41,7 +42,7 @@
                     {% for arrangement in piece.arrangement_set.all %}
                         <li>{{ arrangement.suitable_for }} {{ arrangement.arrangemet_for }}</li>
                         <ul>
-                            <li>arrangemed by: <b>{{ arrangement.arrangemet_by }}</b></li>
+                            <li>arrangement by: <b>{{ arrangement.arrangemet_by }}</b></li>
                             <li>perfomed by: <b>{{ arrangement.perfomr_by }}</b></li>
                         </ul>
                         <p></p>
@@ -61,6 +62,21 @@
                 {% endif %}
             </ul>
         </li>
+
+        <li><a href="javascript:void(0)"><h3>WIKIPEDIA</h3></a>
+            <ul class="subnav" id="sub1">
+                {% if piece.wiki == "link" %}
+                    <li>No link</li>
+                {% else %}
+                    {% if not piece.en_title %}
+                        <li><a href="{{ piece.wiki }} " target="_blank">{{ piece.cz_title }}</a></li>
+                    {% else %}
+                        <li><a href="{{ piece.wiki }} " target="_blank">{{ piece.en_title }}</a></li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+        </li>
+
     </ul>
 </div>
 </body>

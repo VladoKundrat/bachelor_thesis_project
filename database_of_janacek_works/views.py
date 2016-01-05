@@ -27,7 +27,6 @@ class PieceJson(BaseDatatableView):
        # The model we're going to show
        model = Piece
 
-
        #define the columns that will be returned
        columns = ['piece_id', 'cz_title', 'en_title', 'jw_catalogue_number_part_I', 'time_of_composition', 'date_of_premiere',
                   'place_of_premiere', 'compose_for', 'number_of_movement', 'wiki']
@@ -36,7 +35,7 @@ class PieceJson(BaseDatatableView):
        order_columns = ['piece_id', 'cz_title', 'en_title', 'jw_catalogue_number_part_I', 'time_of_composition', 'date_of_premiere',
                         'place_of_premiere', 'compose_for', 'number_of_movement', 'wiki']
 
-       # set max limit of records returned, this is used to protect our site if someone tries to attack our site and make it return huge amount of data
+       # set max limit of records returned
        max_display_length = 300
 
        def render_column(self, row, column):
